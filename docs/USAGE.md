@@ -9,7 +9,7 @@ This template provides a full-stack Next.js setup with TypeScript, Tailwind CSS,
 ## Getting Started
 
 1. **Fork or clone the repository**
-2. **Follow the [Installation Guide](./INSTALLATION) to set up your environment**
+2. **Follow the [Installation Guide](./INSTALLATION.md) to set up your environment**
 3. **Configure your environment variables in `.env.local`**
 4. **Start developing!**
 
@@ -41,8 +41,8 @@ The template provides a `middleware.ts` file at the project root. Use this file 
 
 ## Resources
 
-- [Installation Guide](./INSTALLATION)
-- [Contributing Guide](./CONTRIBUTING)
+- [Installation Guide](./INSTALLATION.md)
+- [Contributing Guide](./CONTRIBUTING.md)
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Prisma Documentation](https://www.prisma.io/docs)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)

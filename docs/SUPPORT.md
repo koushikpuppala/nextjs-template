@@ -14,11 +14,11 @@ If you need help with the Next.js Template, please use one of the following chan
 
 ## 3. Security
 
-- For reporting security vulnerabilities, please see [`docs/SECURITY`](SECURITY) and follow the responsible disclosure process.
+- For reporting security vulnerabilities, please see [`docs/SECURITY`](SECURITY.md) and follow the responsible disclosure process.
 
 ## 4. Documentation
 
-- Review the [README](../README), [Installation Guide](INSTALLATION), and [Usage Guide](USAGE) for answers to common questions.
+- Review the [README](../README.md), [Installation Guide](INSTALLATION.md), and [Usage Guide](USAGE.md) for answers to common questions.
 
 ## 5. GitHub Actions
 
