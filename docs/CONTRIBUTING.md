@@ -65,7 +65,7 @@ Thank you for your interest in contributing! We welcome all kinds of contributio
 
 ## Code of Conduct
 
-Please be respectful and considerate in all interactions. See [`SECURITY`](SECURITY.md) for reporting vulnerabilities.
+Please be respectful and considerate in all interactions. See [`docs/SECURITY.md`](SECURITY.md) for reporting vulnerabilities.
 
 ## Issues & Feature Requests
 

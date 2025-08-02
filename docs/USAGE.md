@@ -8,10 +8,11 @@ This template provides a full-stack Next.js setup with TypeScript, Tailwind CSS,
 
 ## Getting Started
 
-1. **Fork or clone the repository**
-2. **Follow the [Installation Guide](./INSTALLATION.md) to set up your environment**
-3. **Configure your environment variables in `.env.local`**
-4. **Start developing!**
+1. **Use the "Use this template" button on GitHub** to create your own repository from this template.
+2. **Fork or clone the repository** if you prefer manual setup.
+3. **Follow the [Installation Guide](./INSTALLATION.md) to set up your environment**
+4. **Configure your environment variables in `.env.local`**
+5. **Start developing!**
 
 ## Customization
 

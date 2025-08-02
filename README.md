@@ -114,7 +114,7 @@ Supports Vercel, Docker, and other platforms.
 
 ## Security
 
-If you discover a security vulnerability, please see [`docs/SECURITY`](docs/SECURITY) for responsible disclosure.
+If you discover a security vulnerability, please see [`docs/SECURITY.md`](docs/SECURITY.md) for responsible disclosure.
 
 ## Related Resources
 
@@ -136,7 +136,7 @@ You can find workflow files in the `.github/workflows/` directory. These workflo
 
 ## Contributing
 
-See [`docs/CONTRIBUTING`](docs/CONTRIBUTING) for guidelines.
+See [`docs/CONTRIBUTING.md`](docs/CONTRIBUTING.md) for guidelines.
 
 ## License
 

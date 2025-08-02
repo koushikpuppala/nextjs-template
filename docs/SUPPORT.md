@@ -14,7 +14,7 @@ If you need help with the Next.js Template, please use one of the following chan
 
 ## 3. Security
 
-- For reporting security vulnerabilities, please see [`docs/SECURITY`](SECURITY.md) and follow the responsible disclosure process.
+- For reporting security vulnerabilities, please see [`docs/SECURITY.md`](SECURITY.md) and follow the responsible disclosure process.
 
 ## 4. Documentation
 
