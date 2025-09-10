@@ -1,1 +1,2 @@
-pnpm lint && pnpm format
+# Run lint, fix, and format staged files
+pnpm lint-staged

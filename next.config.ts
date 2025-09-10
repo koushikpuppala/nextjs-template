@@ -14,9 +14,9 @@ const nextConfig = nextPWA.default({
 		cleanupOutdatedCaches: process.env.NODE_ENV !== 'development',
 	},
 })({
+	experimental: { useCache: true },
 	reactStrictMode: process.env.NODE_ENV !== 'development',
-	experimental: { reactCompiler: process.env.NODE_ENV === 'development' },
-	output: process.env.ENVIRONMENT === 'production' ? 'standalone' : undefined,
+	output: process.env.ENVIRONMENT === 'docker' ? 'standalone' : undefined,
 	images: { remotePatterns: [{ protocol: 'https', hostname: '*', port: '*', pathname: '**' }] },
 })
 

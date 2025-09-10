@@ -1,8 +1,7 @@
-// types/global.d.ts
-
 import { PrismaClient } from 'prisma'
 import { withAccelerate } from '@prisma/extension-accelerate'
 
+// eslint-disable-next-line
 const _client = new PrismaClient().$extends(withAccelerate())
 
 declare global {
