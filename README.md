@@ -69,15 +69,28 @@ pnpm studio
 
 Copy `.env.example` to `.env.local` and configure as needed. Below are the available variables:
 
-| Variable                        | Description                                                                            |
-| ------------------------------- | -------------------------------------------------------------------------------------- |
-| `PRISMA_URI`                    | Database connection URI with Accelerate for Prisma ORM                                 |
-| `MONGO_URI`                     | MongoDB connection URI                                                                 |
-| `SENTRY_AUTH_TOKEN`             | Auth token used by Sentry CLI for uploading source maps (optional, used in CI/CD)      |
-| `NEXT_PUBLIC_SENTRY_DSN`        | Public Sentry DSN used for error tracking on the client side                           |
-| `NEXT_PUBLIC_DEPLOY_URL`        | Public deployment URL without trailing slash (used for metadata, redirects, SEO, etc.) |
-| `NEXT_PUBLIC_GOOGLE_ANALYTICS`  | Google Analytics Measurement ID for tracking site usage                                |
-| `NEXT_PUBLIC_MICROSOFT_CLARITY` | Microsoft Clarity tracking code for session recording and heatmaps                     |
+| Variable                          | Description                                                                            |
+| --------------------------------- | -------------------------------------------------------------------------------------- |
+| `PRISMA_URI`                      | Database connection URI with Accelerate for Prisma ORM                                 |
+| `MONGO_URI`                       | MongoDB Atlas URI connection string                                                    |
+| `ENABLE_SENTRY`                   | Enable Sentry error tracking (`true`/`false`)                                          |
+| `SENTRY_AUTH_TOKEN`               | Auth token used by Sentry CLI for uploading source maps (optional, used in CI/CD)      |
+| `NEXT_PUBLIC_SENTRY_DSN`          | Public Sentry DSN used for error tracking on the client side                           |
+| `NEXT_PUBLIC_DEPLOY_URL`          | Public deployment URL without trailing slash (used for metadata, redirects, SEO, etc.) |
+| `NEXT_PUBLIC_GOOGLE_ANALYTICS`    | Google Analytics Measurement ID for tracking site usage                                |
+| `NEXT_PUBLIC_MICROSOFT_CLARITY`   | Microsoft Clarity tracking code for session recording and heatmaps                     |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`  | Google ReCaptcha (v2 or v3) Site Key for client-side integration                       |
+| `RECAPTCHA_SECRET_KEY`            | Google ReCaptcha Secret Key for server-side verification                               |
+| `NEXT_PUBLIC_API_KEY`             | Firebase Client API Key                                                                |
+| `NEXT_PUBLIC_AUTH_DOMAIN`         | Firebase Auth Domain                                                                   |
+| `NEXT_PUBLIC_DATABASE_URL`        | Firebase Database URL                                                                  |
+| `NEXT_PUBLIC_PROJECT_ID`          | Firebase Project ID                                                                    |
+| `NEXT_PUBLIC_STORAGE_BUCKET`      | Firebase Storage Bucket                                                                |
+| `NEXT_PUBLIC_MESSAGING_SENDER_ID` | Firebase Messaging Sender ID                                                           |
+| `NEXT_PUBLIC_APP_ID`              | Firebase App ID                                                                        |
+| `FIREBASE_PRIVATE_KEY`            | Firebase Admin Private Key                                                             |
+| `FIREBASE_CLIENT_EMAIL`           | Firebase Admin Client Email                                                            |
+| `LOG_DIR`                         | Logging directory (default: `logs`)                                                    |
 
 > See `.env.example` for the full list and format. All variables should be set in your `.env.local` for local development and deployment.
 

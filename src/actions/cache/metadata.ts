@@ -2,8 +2,8 @@
 
 import type { GetAllMetadataArgs, GetMetadataArgs } from 'types/actions'
 
-import { Result } from 'lib/result'
 import { prisma } from 'prisma'
+import { Result } from 'lib/result'
 
 export const getMetadata: GetMetadataArgs = async args => {
 	const { key, type } = args

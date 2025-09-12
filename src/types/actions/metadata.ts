@@ -1,5 +1,5 @@
-import type { Metadata, MetadataType, Prisma } from 'prisma'
 import type { ServerActionResponse } from '../lib'
+import type { Metadata, MetadataType, Prisma } from 'prisma'
 
 export type GetMetadataArgs = (args: {
 	key: string

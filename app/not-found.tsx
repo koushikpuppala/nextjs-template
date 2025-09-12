@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-import { Animation } from 'components/ui'
 import Link from 'next/link'
+import { Animation } from 'components/ui'
 
 export const metadata: Metadata = {
 	title: '404 | Page Not Found',
@@ -17,8 +17,8 @@ const NotFoundPage = () => {
 			</Animation.h1>
 
 			<Animation.p
-				direction='down'
 				delay={0.2}
+				direction='down'
 				className='text-2xl font-bold tracking-tight text-white sm:text-4xl'>
 				Page not found
 			</Animation.p>

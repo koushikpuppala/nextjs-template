@@ -7,10 +7,10 @@ import type {
 	UpdateMetadataArgs,
 } from 'types/actions'
 
-import { verifySession } from 'lib/session'
+import { prisma } from 'prisma'
 import { logger } from 'lib/logger'
 import { Result } from 'lib/result'
-import { prisma } from 'prisma'
+import { verifySession } from 'lib/session'
 
 export const createMetadata: CreateMetadataArgs = async args => {
 	const { data } = args

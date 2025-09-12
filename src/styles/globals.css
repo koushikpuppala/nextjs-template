@@ -126,3 +126,13 @@
 		@apply text-accent hover:text-accent/80 transition-colors duration-300;
 	}
 }
+
+/* TODO: react-date-range dark theme - remove if light only */
+@media (prefers-color-scheme: dark) {
+	@import './react-date-range-dark.css';
+}
+
+/* TODO: react-date-range light theme - remove if dark only */
+@media (prefers-color-scheme: light) {
+	@import 'react-date-range/dist/theme/default.css';
+}

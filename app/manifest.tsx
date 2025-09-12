@@ -14,6 +14,22 @@ const ManifestPage = (): MetadataRoute.Manifest => {
 		theme_color: '#000000',
 		background_color: '#ffffff',
 		display_override: ['window-controls-overlay'],
+		screenshots: [
+			{
+				src: '/icons/android-chrome-512x512.png',
+				sizes: '1280x720',
+				type: 'image/png',
+				label: 'Home Page',
+				form_factor: 'wide',
+			},
+			{
+				src: '/icons/android-chrome-512x512.png',
+				sizes: '1280x720',
+				type: 'image/png',
+				label: 'Dashboard Page',
+				form_factor: 'narrow',
+			},
+		],
 		icons: [
 			{
 				src: '/icons/android-chrome-512x512.png',

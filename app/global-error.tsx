@@ -2,9 +2,9 @@
 
 import type { GlobalErrorProps } from 'types/app'
 
-import { Animation } from 'components/ui'
-import * as Sentry from '@sentry/nextjs'
 import { useEffect } from 'react'
+import * as Sentry from '@sentry/nextjs'
+import { Animation } from 'components/ui'
 
 const GlobalError = ({ error, reset }: GlobalErrorProps) => {
 	useEffect(() => {
@@ -18,8 +18,8 @@ const GlobalError = ({ error, reset }: GlobalErrorProps) => {
 			</Animation.h1>
 
 			<Animation.p
-				direction='down'
 				delay={0.2}
+				direction='down'
 				className='text-2xl font-bold tracking-tight text-white sm:text-4xl'>
 				Internal Server Error
 			</Animation.p>

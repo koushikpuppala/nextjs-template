@@ -4,5 +4,3 @@ export const formatDate = (date: Date | string, locale: string = 'en-US'): strin
 		month: 'short',
 		day: '2-digit',
 	})
-
-export const ISODate = (date: string | number | Date) => new Date(date).toISOString()
