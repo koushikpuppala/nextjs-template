@@ -11,13 +11,13 @@ export const revokeSession = async (functionName: string) => {
 	try {
 		const token = await getCookie(COOKIE_NAME)
 
-		if (!token) return Result.unauthorized('Session token is required', functionName)
+		if (!token) return Result.unauthorized('Session token is required', functionName).toJSON()
 
 		logger.info('Revoking session', functionName, { token: token.slice(0, 10) + '...' })
 
 		const decodedToken = await adminAuth.verifyIdToken(token, true)
 
-		if (!decodedToken) return Result.unauthorized('Invalid session token', functionName)
+		if (!decodedToken) return Result.unauthorized('Invalid session token', functionName).toJSON()
 
 		logger.info('Session token decoded successfully', functionName, { decodedToken })
 
@@ -25,7 +25,7 @@ export const revokeSession = async (functionName: string) => {
 
 		const user = await prisma.user.findUnique({ where: { uid } })
 
-		if (!user || user.deletedAt) return Result.notFound('User not found', functionName)
+		if (!user || user.deletedAt) return Result.notFound('User not found', functionName).toJSON()
 
 		await prisma.session.updateMany({
 			where: { token, revoked: false },
@@ -34,11 +34,15 @@ export const revokeSession = async (functionName: string) => {
 
 		logger.info('Session revoked successfully', functionName, { uid, email })
 
-		return Result.noContent('Session revoked successfully', functionName)
+		return Result.noContent('Session revoked successfully', functionName).toJSON()
 	} catch (error) {
 		logger.error('Failed to revoke session', functionName, error as Error)
 
-		return Result.internalServerError('Failed to revoke session', functionName, error as Error)
+		return Result.internalServerError(
+			'Failed to revoke session',
+			functionName,
+			error as Error,
+		).toJSON()
 	}
 }
 
@@ -46,13 +50,13 @@ export const revokeAllSessions = async (functionName: string) => {
 	try {
 		const token = await getCookie(COOKIE_NAME)
 
-		if (!token) return Result.unauthorized('Session token is required', functionName)
+		if (!token) return Result.unauthorized('Session token is required', functionName).toJSON()
 
 		logger.info('Revoking all sessions', functionName, { token: token.slice(0, 10) + '...' })
 
 		const decodedToken = await adminAuth.verifyIdToken(token, true)
 
-		if (!decodedToken) return Result.unauthorized('Invalid session token', functionName)
+		if (!decodedToken) return Result.unauthorized('Invalid session token', functionName).toJSON()
 
 		logger.info('Session token decoded successfully', functionName, { decodedToken })
 
@@ -60,7 +64,7 @@ export const revokeAllSessions = async (functionName: string) => {
 
 		const user = await prisma.user.findUnique({ where: { uid } })
 
-		if (!user || user.deletedAt) return Result.notFound('User not found', functionName)
+		if (!user || user.deletedAt) return Result.notFound('User not found', functionName).toJSON()
 
 		await adminAuth.revokeRefreshTokens(uid)
 
@@ -71,10 +75,14 @@ export const revokeAllSessions = async (functionName: string) => {
 
 		logger.info('All sessions revoked successfully', functionName, { uid, email })
 
-		return Result.noContent('All sessions revoked successfully', functionName)
+		return Result.noContent('All sessions revoked successfully', functionName).toJSON()
 	} catch (error) {
 		logger.error('Failed to revoke all sessions', functionName, error as Error)
 
-		return Result.internalServerError('Failed to revoke all sessions', functionName, error as Error)
+		return Result.internalServerError(
+			'Failed to revoke all sessions',
+			functionName,
+			error as Error,
+		).toJSON()
 	}
 }
