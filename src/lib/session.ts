@@ -13,13 +13,13 @@ export const verifySession = async (functionName: string) => {
 	try {
 		const token = await getCookie(COOKIE_NAME)
 
-		if (!token) return Result.unauthorized('Session token is required', functionName)
+		if (!token) return Result.unauthorized('Session token is required', functionName).toJSON()
 
 		logger.info('Verifying session', functionName, { token: token.slice(0, 10) + '...' })
 
 		const decodedToken = await adminAuth.verifyIdToken(token, true)
 
-		if (!decodedToken) return Result.unauthorized('Invalid session token', functionName)
+		if (!decodedToken) return Result.unauthorized('Invalid session token', functionName).toJSON()
 
 		logger.info('Session token decoded successfully', functionName, { decodedToken })
 
@@ -28,7 +28,7 @@ export const verifySession = async (functionName: string) => {
 		const user = await prisma.user.findUnique({ where: { uid } })
 
 		if (!user || user.deletedAt || user.role !== 'ADMIN')
-			return Result.forbidden('User is not an admin or has been deleted', functionName)
+			return Result.forbidden('User is not an admin or has been deleted', functionName).toJSON()
 
 		const session = await handleSession(functionName, token, decodedToken)
 
@@ -36,14 +36,18 @@ export const verifySession = async (functionName: string) => {
 
 		logger.info('Session verified successfully', functionName, { user })
 
-		return Result.noContent('Session token is valid', functionName)
+		return Result.noContent('Session token is valid', functionName).toJSON()
 	} catch (error) {
 		logger.error('Failed to verify session', functionName, error as Error)
 
 		if ((error as { code?: string })?.code === 'auth/id-token-revoked')
-			return Result.unauthorized('Session revoked. Please log in again.', functionName)
+			return Result.unauthorized('Session revoked. Please log in again.', functionName).toJSON()
 
-		return Result.unauthorized('Failed to verify session token', functionName, error as Error)
+		return Result.unauthorized(
+			'Failed to verify session token',
+			functionName,
+			error as Error,
+		).toJSON()
 	}
 }
 
@@ -57,7 +61,7 @@ export const handleSession = async (
 
 		const user = await prisma.user.findFirst({ where: { uid, deletedAt: null } })
 
-		if (!user) return Result.notFound('User not found', functionName)
+		if (!user) return Result.notFound('User not found', functionName).toJSON()
 
 		const session = await prisma.session.upsert({
 			where: { token, revoked: false, expiresAt: { gt: new Date() } },
@@ -72,15 +76,19 @@ export const handleSession = async (
 
 		if (!session) {
 			logger.warn('Session invalid', functionName, { token: token.slice(0, 10) + '...' })
-			return Result.unauthorized('Session is expired or revoked', functionName)
+			return Result.unauthorized('Session is expired or revoked', functionName).toJSON()
 		}
 
 		logger.info('Session token decoded successfully', functionName, { decodedToken, session })
 
-		return Result.noContent('Session handled successfully', functionName)
+		return Result.noContent('Session handled successfully', functionName).toJSON()
 	} catch (error) {
 		logger.error('Failed to handle session', functionName, error as Error)
 
-		return Result.internalServerError('Failed to handle session', functionName, error as Error)
+		return Result.internalServerError(
+			'Failed to handle session',
+			functionName,
+			error as Error,
+		).toJSON()
 	}
 }

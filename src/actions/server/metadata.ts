@@ -27,13 +27,20 @@ export const createMetadata: CreateMetadataArgs = async args => {
 		})
 
 		if (existingMetadata)
-			return Result.conflict('Metadata with the same key and type already exists', 'createMetadata')
+			return Result.conflict(
+				'Metadata with the same key and type already exists',
+				'createMetadata',
+			).toJSON()
 
 		const newMetadata = await prisma.metadata.create({ data })
 
-		return Result.created('Metadata created successfully', 'createMetadata', newMetadata)
+		return Result.created('Metadata created successfully', 'createMetadata', newMetadata).toJSON()
 	} catch (error) {
-		return Result.internalServerError('Failed to create metadata', 'createMetadata', error as Error)
+		return Result.internalServerError(
+			'Failed to create metadata',
+			'createMetadata',
+			error as Error,
+		).toJSON()
 	}
 }
 
@@ -51,16 +58,24 @@ export const updateMetadata: UpdateMetadataArgs = async args => {
 			where: { ...where, deletedAt: null },
 		})
 
-		if (!existingMetadata) return Result.notFound('Metadata not found', 'updateMetadata')
+		if (!existingMetadata) return Result.notFound('Metadata not found', 'updateMetadata').toJSON()
 
 		const updatedMetadata = await prisma.metadata.update({
 			where: { ...where, deletedAt: null },
 			data: { ...data, version: { increment: 0.1 } },
 		})
 
-		return Result.success('Metadata updated successfully', 'updateMetadata', updatedMetadata)
+		return Result.success(
+			'Metadata updated successfully',
+			'updateMetadata',
+			updatedMetadata,
+		).toJSON()
 	} catch (error) {
-		return Result.internalServerError('Failed to update metadata', 'updateMetadata', error as Error)
+		return Result.internalServerError(
+			'Failed to update metadata',
+			'updateMetadata',
+			error as Error,
+		).toJSON()
 	}
 }
 
@@ -78,16 +93,20 @@ export const deleteMetadata: DeleteMetadataArgs = async args => {
 			where: { ...where, deletedAt: null },
 		})
 
-		if (!existingMetadata) return Result.notFound('Metadata not found', 'deleteMetadata')
+		if (!existingMetadata) return Result.notFound('Metadata not found', 'deleteMetadata').toJSON()
 
 		await prisma.metadata.update({
 			where: { ...where, deletedAt: null },
 			data: { deletedAt: new Date() },
 		})
 
-		return Result.noContent('Metadata deleted successfully', 'deleteMetadata')
+		return Result.noContent('Metadata deleted successfully', 'deleteMetadata').toJSON()
 	} catch (error) {
-		return Result.internalServerError('Failed to delete metadata', 'deleteMetadata', error as Error)
+		return Result.internalServerError(
+			'Failed to delete metadata',
+			'deleteMetadata',
+			error as Error,
+		).toJSON()
 	}
 }
 
@@ -103,16 +122,17 @@ export const forceDeleteMetadata: ForceDeleteMetadataArgs = async args => {
 
 		const existingMetadata = await prisma.metadata.findUnique({ where })
 
-		if (!existingMetadata) return Result.notFound('Metadata not found', 'forceDeleteMetadata')
+		if (!existingMetadata)
+			return Result.notFound('Metadata not found', 'forceDeleteMetadata').toJSON()
 
 		await prisma.metadata.delete({ where })
 
-		return Result.noContent('Metadata force deleted successfully', 'forceDeleteMetadata')
+		return Result.noContent('Metadata force deleted successfully', 'forceDeleteMetadata').toJSON()
 	} catch (error) {
 		return Result.internalServerError(
 			'Failed to force delete metadata',
 			'forceDeleteMetadata',
 			error as Error,
-		)
+		).toJSON()
 	}
 }

@@ -14,11 +14,15 @@ export const getMetadata: GetMetadataArgs = async args => {
 			select: { title: true, description: true, keywords: true },
 		})
 
-		if (!result) return Result.notFound('Metadata not found', 'getMetadata')
+		if (!result) return Result.notFound('Metadata not found', 'getMetadata').toJSON()
 
-		return Result.success('Metadata retrieved successfully', 'getMetadata', result)
+		return Result.success('Metadata retrieved successfully', 'getMetadata', result).toJSON()
 	} catch (error) {
-		return Result.internalServerError('Failed to retrieve metadata', 'getMetadata', error as Error)
+		return Result.internalServerError(
+			'Failed to retrieve metadata',
+			'getMetadata',
+			error as Error,
+		).toJSON()
 	}
 }
 
@@ -41,12 +45,12 @@ export const getAllMetadata: GetAllMetadataArgs = async args => {
 			'getAllMetadata',
 			result,
 			nonPaginated ? undefined : totalCount,
-		)
+		).toJSON()
 	} catch (error) {
 		return Result.internalServerError(
 			'Failed to retrieve all metadata',
 			'getAllMetadata',
 			error as Error,
-		)
+		).toJSON()
 	}
 }

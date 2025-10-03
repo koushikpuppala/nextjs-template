@@ -9,7 +9,7 @@ export const POST = async () => {
 		const result = Result.success('Server health check successful.', 'HealthCheck/POST', {
 			ping: typeof ping?.ok === 'number' && ping.ok === 1,
 			timestamp: new Date().toISOString(),
-		})
+		}).toJSON()
 
 		return Response.json(result, { status: RESPONSE_CODES.SUCCESS })
 	} catch (error) {
@@ -17,7 +17,7 @@ export const POST = async () => {
 			'Server health check failed.',
 			'HealthCheck/POST',
 			error as Error,
-		)
+		).toJSON()
 
 		return Response.json(result, { status: result.code })
 	}
